@@ -9,15 +9,14 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import org.apache.commons.jexl3.JexlBuilder;
-import org.apache.commons.jexl3.JexlContext;
 import org.apache.commons.jexl3.JexlEngine;
 import org.apache.commons.jexl3.JexlExpression;
 
 public class App extends Application{
 	TextField tOperazione=new TextField();
+		Label eRisultato=new Label();
 	public void start(Stage finestra) {
 		Button pulsante=new Button("valuta");
-		Label eRisultato=new Label();
 		
 		GridPane griglia= new GridPane();
 		
@@ -39,6 +38,7 @@ public class App extends Application{
 		 JexlEngine jexl = new JexlBuilder().create();
 		 JexlExpression e = jexl.createExpression( operazione );
 		 System.out.println(e.evaluate(null));
+		 eRisultato.setText(""+e.evaluate(null));
 	}
 	
 	public static void main(String[] args) {
