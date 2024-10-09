@@ -37,10 +37,13 @@ public class MainClass extends Application{
 	
     ListView<String> riassumo= new ListView<String>();
     
-    String percorso= "C:\\Users\\michelebellucci1\\Desktop\\Workspace\\calcola\\target\\classes\\calcola\\dati.csv";
+    String percorso;
     
 	public void start(Stage finestra) {
 		GridPane griglia= new GridPane();
+		
+		System.out.println(System.getProperty("user.home"));
+		percorso=System.getProperty("user.home")+"\\data.csv";
 		
 		griglia.setPadding(new Insets(10));
 		griglia.setHgap(10);
@@ -130,10 +133,16 @@ public class MainClass extends Application{
 				}
 			}
 			eMoneteAttuali.setText(""+valoreAttuale);
-
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				FileWriter file = new FileWriter(percorso);
+				file.write("");
+				System.out.println("il file è stato creato in "+percorso);
+				salva(null);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
